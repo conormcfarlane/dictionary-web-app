@@ -5,19 +5,27 @@ import './App.css'
 import './index.css'
 import './reset.css'
 import Header from './components/Header/Header'
+import SearchBar from './components/SearchBar/SearchBar'
+import Dictionary from './components/Dictionary/Dictionary'
 
 function App() {
-   const [word, setWord] = useState('keyboard')
+  const [selectedFont, setSelectedFont] = useState('Mono')
+  const handleFontChange = (font) => {
+    setSelectedFont(font)
+    document.body.style.fontFamily = font
+  }
+
+   const [word, setWord] = useState('keyboard') // Default word
    const [data, setData] = useState(null)
    const [loading, setLoading] = useState(false)
    const [error, setError] = useState(null)
 
-  const dictionaryDataFetching = async () => {
+  const dictionaryDataFetching = async (searchWord) => {
       setLoading(true) //Start Loading
       setError(null) // Resets error state 
 
       try{
-        const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+        const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`)
         if(!response.ok) {
           throw new Error('Failed to fetch data')
         }
@@ -32,18 +40,17 @@ function App() {
       }
      }
 
+     //fetch data for default word when page loads ie Keyboard
      useEffect(() => {
-      dictionaryDataFetching();
+      dictionaryDataFetching(word);
      }, [word])
 
-    
-  
- 
-
-
   return (
-    <div className='p-6'>
-      <Header />
+    <div className='p-6 flex flex-col gap-8'>
+      <Header selectedFont={selectedFont} handleFontChange={handleFontChange}/>
+      <SearchBar word={word} dictionaryDataFetching={dictionaryDataFetching} />
+      <Dictionary word={word} />
+      
     
      
     </div>
