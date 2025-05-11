@@ -30,7 +30,8 @@ function App() {
           throw new Error('Failed to fetch data')
         }
         const result = await response.json()
-        setData(result) // Set fetched result
+        setData(result[0]) // Set fetched result
+        setWord(searchWord) // !! Updates the word state !!
         console.log('This is the result', result)
       }catch(error){
         setError(error) // Set error state
@@ -49,7 +50,7 @@ function App() {
     <div className='p-6 flex flex-col gap-8'>
       <Header selectedFont={selectedFont} handleFontChange={handleFontChange}/>
       <SearchBar word={word} dictionaryDataFetching={dictionaryDataFetching} />
-      <Dictionary word={word} />
+      <Dictionary word={word} data={data} />
       
     
      
