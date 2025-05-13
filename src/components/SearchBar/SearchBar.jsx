@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import iconSearch from '../../../public/images/icon-search.svg'
 
-export default function SearchBar({word, dictionaryDataFetching}) {
+export default function SearchBar({word, dictionaryDataFetching, isDarkMode}) {
     const [inputValue, setInputValue] = useState(word) //Tracks input
 
     useEffect(() => {
@@ -17,10 +17,11 @@ export default function SearchBar({word, dictionaryDataFetching}) {
     }
     
   return (
-    <div className='flex bg-gray-200 justify-between p-4 rounded-2xl'>
+    <div className={`flex justify-between p-4 rounded-2xl
+    ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-200'}`}>
         <input type="text" 
         value={inputValue} // controlled input
-        className='w-9/10 font-bold' 
+        className='w-9/10 font-bold outline-none' 
         onChange={handleInputChange} //When input changes handle/update input state 
         /> 
         <div className='flex justify-center items-center w-1/10'>

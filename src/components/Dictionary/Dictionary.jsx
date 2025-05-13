@@ -2,7 +2,7 @@ import React from 'react'
 import iconPlay from '../../../public/images/icon-play.svg'
 
 
-export default function Dictionary({word, data}) {
+export default function Dictionary({word, data, isDarkMode}) {
 
   if(!data){
     return <p>Loading....</p>
@@ -30,7 +30,7 @@ export default function Dictionary({word, data}) {
   const synonyms = data.meanings[0]?.synonyms.slice(0, 3) || ['No Synonyms available for this word']
 
   const example = data.meanings[1]?.definitions[0]?.example
-  const sourceURL = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+  const sourceURL = data.sourceUrls[0]
   
   return (
     <div className='flex flex-col gap-6'>
@@ -58,7 +58,9 @@ export default function Dictionary({word, data}) {
         <ul className='list-inside list-disc pl-0'>
           {meanings.map((meanings,index) => {
             return(
-               <li key={index} className='pb-4 pl-4 -indent-4'>
+               <li key={index} className={`pb-4 pl-4 -indent-4 ${isDarkMode ? 'marker:text-purple-600' : 'marker:text-color-black'
+
+               }`}>
                 {meanings.definition}
                </li>
             )
@@ -114,6 +116,12 @@ export default function Dictionary({word, data}) {
       {/* Source */}
       <section className='border-t border-gray-200'>
         <p className='underline text-gray-500 text-sm pt-6'>Source</p>
+        <a
+          href={sourceURL}
+           target='_blank'
+           rel='noopener no referrer'
+           className='underline italic'
+        >{sourceURL}</a>
       </section>
 
 
