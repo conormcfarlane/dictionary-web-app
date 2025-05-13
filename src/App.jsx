@@ -51,16 +51,18 @@ function App() {
      }, [word])
 
   return (
-    <div className={`p-6 flex flex-col gap-8 ${
+    <div className={`min-h-screen min-w-screen flex justify-center ${
       isDarkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-black'
     }`}>
+       <div className='p-6 flex flex-col gap-8
+      md:p-10 max-w-[737px] '>
       <Header selectedFont={selectedFont} handleFontChange={handleFontChange} toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode}/>
       <SearchBar word={word} dictionaryDataFetching={dictionaryDataFetching} isDarkMode={isDarkMode} />
       <Dictionary word={word} data={data} isDarkMode={isDarkMode} />
-      
     
-     
     </div>
+    </div>
+   
        )
 }
 
