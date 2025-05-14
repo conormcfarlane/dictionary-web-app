@@ -8,6 +8,7 @@ import Header from './components/Header/Header'
 import SearchBar from './components/SearchBar/SearchBar'
 import Dictionary from './components/Dictionary/Dictionary'
 
+
 function App() {
   const [selectedFont, setSelectedFont] = useState('Mono')
   const handleFontChange = (font) => {
@@ -52,13 +53,22 @@ function App() {
 
   return (
     <div className={`min-h-screen min-w-screen flex justify-center ${
-      isDarkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-black'
+      isDarkMode ? 'dark bg-black text-white' : 'bg-white text-black'
     }`}>
        <div className='p-6 flex flex-col gap-8
       md:p-10 max-w-[737px] '>
       <Header selectedFont={selectedFont} handleFontChange={handleFontChange} toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode}/>
       <SearchBar word={word} dictionaryDataFetching={dictionaryDataFetching} isDarkMode={isDarkMode} />
-      <Dictionary word={word} data={data} isDarkMode={isDarkMode} />
+      {error ? (
+          <div className='text-center flex flex-col gap-4 '>
+            <p className='text-4xl'>  &#128577; </p>
+            <p> No definitions found </p>
+            <p>Sorry, we couldn't find any definitions for the word you were looking for. Please try a differnt word or come back at a later time instead</p>
+          </div>
+      ) : (
+          <Dictionary word={word} data={data} isDarkMode={isDarkMode} />
+      )}
+      
     
     </div>
     </div>
