@@ -12,6 +12,7 @@ export default function SearchBar({word, dictionaryDataFetching, isDarkMode}) {
 
     const handleInputChange = (event) => {
         setInputValue(event.target.value) //handles/update inputValue
+        setError(false) //Clears error when user types
     }
     const handleSearch = () => {
         if(!inputValue.trim()){
@@ -22,11 +23,17 @@ export default function SearchBar({word, dictionaryDataFetching, isDarkMode}) {
     }
     const handleKeyDown = (event) => {
         if (event.key === 'Enter'){
-            dictionaryDataFetching(inputValue)
+            if(!inputValue.trim()){
+            setError(true)
+            return
+        }
+        
+        dictionaryDataFetching(inputValue)
         }
     }
     
   return (
+    <>
     <div className='flex flex-col gap-2'>
     <div className={`flex justify-between p-4 rounded-2xl border border-white hover:border-purple-600
         ${error 
@@ -49,6 +56,10 @@ export default function SearchBar({word, dictionaryDataFetching, isDarkMode}) {
     </div>
     
     </div>
+    {error && (
+        <p className="text-red-500 text-sm">Please enter a word to search.</p> // Error message
+      )}
+    </>
     
   )
 }

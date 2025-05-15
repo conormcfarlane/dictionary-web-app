@@ -56,7 +56,7 @@ function App() {
       isDarkMode ? 'dark bg-black text-white' : 'bg-white text-black'
     }`}>
        <div className='p-6 flex flex-col gap-8
-      md:p-10 max-w-[737px] '>
+      md:p-10 md:min-w-[637px] max-w-[737px] lg:min-w-[737px]'>
       <Header selectedFont={selectedFont} handleFontChange={handleFontChange} toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode}/>
       <SearchBar word={word} dictionaryDataFetching={dictionaryDataFetching} isDarkMode={isDarkMode} />
       {error ? (
