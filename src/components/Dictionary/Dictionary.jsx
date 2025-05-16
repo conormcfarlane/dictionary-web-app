@@ -40,7 +40,7 @@ export default function Dictionary({word, data, isDarkMode}) {
       <section className='grid grid-cols-2 grid-rows-2 gap-2'>
         <h1 className='text-3xl font-semibold '>{word}</h1>
         <p className='text-purple-600 col-start-1'>{phonetic}</p>
-        <button className='col-start-2 row-start-1 row-span-2 justify-self-end' onClick={handleAudioPlay}>
+        <button className='col-start-2 row-start-1 row-span-2 justify-self-end cursor-pointer' onClick={handleAudioPlay}>
           <img src={iconPlay} className='h-12 w-12' alt="" />
         </button>
       </section>

@@ -37,10 +37,12 @@ export default function SearchBar({word, dictionaryDataFetching, isDarkMode}) {
     <div className='flex flex-col gap-2'>
     <div className={`flex justify-between p-4 rounded-2xl border border-white hover:border-purple-600
         ${error 
-        ? 'border-red-500 bg-gray-200'
-        : isDarkMode 
-        ? 'bg-gray-800 text-white border-gray-600 hover:border-purple-600  ' 
-        : 'bg-gray-200 border-gray-300 hover:border-purple-600'}`}>
+            ? (isDarkMode 
+            ? 'border-red-500 bg-gray-800 text-white' 
+            : 'border-red-500 bg-gray-200')
+            : isDarkMode 
+            ? 'bg-gray-800 text-white border-gray-600 hover:border-purple-600' 
+            : 'bg-gray-200 border-gray-300 hover:border-purple-600'}`}>
 
         <input type="text" 
         value={inputValue} // controlled input

@@ -41,7 +41,7 @@ export default function Header({selectedFont,handleFontChange,toggleDarkMode, is
                   onClick={handleIsOpenChange}>
                 {selectedFont}
               </p>
-              <button className='cursor-pointer'
+              <button className='cursor-pointer pr-5'
                       onClick={handleIsOpenChange}
                       >
                 <img src={iconDown} alt="Dropdown Arrow" />
@@ -64,8 +64,15 @@ export default function Header({selectedFont,handleFontChange,toggleDarkMode, is
                 </div>
               )}
               </div>
-            <div className='flex px-2'>
-                <img src={iconMoon} alt="" onClick={toggleDarkMode} className='cursor-pointer' />
+            <div className='flex px-2 gap-5 '>
+                <div className={`flex w-12 h-6 p-1 rounded-2xl items-center cursor-pointer transition-all duration-400
+                ${isDarkMode ? 'bg-purple-600' : 'bg-gray-400'}`}
+                onClick={toggleDarkMode}>
+                  <div className={`w-4 h-4 bg-white rounded-2xl transition-all duration-400 shadow-2xl
+                    ${isDarkMode ? 'translate-x-6' : 'ml-0'}`
+                  }>
+                  </div>
+                </div>
                 <img src={iconMoon} alt="" />
             </div>
         </div>
